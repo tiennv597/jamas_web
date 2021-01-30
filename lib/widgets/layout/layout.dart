@@ -1,8 +1,8 @@
 
-import 'package:ecommerce_admin_tut/rounting/route_names.dart';
-import 'package:ecommerce_admin_tut/rounting/router.dart';
-import 'package:ecommerce_admin_tut/services/navigation_service.dart';
-import 'package:ecommerce_admin_tut/widgets/side_menu/side_menu.dart';
+import 'package:jamas_web/rounting/route_names.dart';
+import 'package:jamas_web/rounting/router.dart';
+import 'package:jamas_web/services/navigation_service.dart';
+import 'package:jamas_web/widgets/side_menu/side_menu.dart';
 import 'package:flutter/material.dart';
 
 import '../../locator.dart';

@@ -1,4 +1,4 @@
-import 'package:ecommerce_admin_tut/widgets/custom_text.dart';
+import 'package:jamas_web/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class SideMenuItemDesktop extends StatelessWidget {

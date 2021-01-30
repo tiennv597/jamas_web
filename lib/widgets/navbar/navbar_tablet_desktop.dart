@@ -1,5 +1,5 @@
-import 'package:ecommerce_admin_tut/helpers/app_colors.dart';
-import 'package:ecommerce_admin_tut/widgets/custom_text.dart';
+import 'package:jamas_web/helpers/app_colors.dart';
+import 'package:jamas_web/widgets/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -1,17 +1,16 @@
-import 'package:ecommerce_admin_tut/pages/login/login.dart';
-import 'package:ecommerce_admin_tut/provider/app_provider.dart';
-import 'package:ecommerce_admin_tut/provider/auth.dart';
-import 'package:ecommerce_admin_tut/provider/tables.dart';
-import 'package:ecommerce_admin_tut/rounting/route_names.dart';
-import 'package:ecommerce_admin_tut/rounting/router.dart';
-import 'package:ecommerce_admin_tut/widgets/layout/layout.dart';
-import 'package:ecommerce_admin_tut/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
 import 'helpers/costants.dart';
 import 'locator.dart';
+import 'pages/login/login.dart';
+import 'provider/app_provider.dart';
+import 'provider/auth.dart';
+import 'provider/tables.dart';
+import 'rounting/route_names.dart';
+import 'rounting/router.dart';
+import 'widgets/layout/layout.dart';
+import 'widgets/loading.dart';
 
 void main() {
   setupLocator();

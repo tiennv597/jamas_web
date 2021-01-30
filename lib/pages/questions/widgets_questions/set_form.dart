@@ -1,6 +1,6 @@
-import 'package:ecommerce_admin_tut/pages/questions/controller/question_controller.dart';
-import 'package:ecommerce_admin_tut/pages/questions/widgets_questions/add_form1.dart';
-import 'package:ecommerce_admin_tut/pages/questions/widgets_questions/add_form2.dart';
+import 'package:jamas_web/pages/questions/controller/question_controller.dart';
+import 'package:jamas_web/pages/questions/widgets_questions/add_form1.dart';
+import 'package:jamas_web/pages/questions/widgets_questions/add_form2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

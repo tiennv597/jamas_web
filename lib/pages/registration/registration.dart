@@ -1,8 +1,8 @@
-import 'package:ecommerce_admin_tut/provider/auth.dart';
-import 'package:ecommerce_admin_tut/rounting/route_names.dart';
-import 'package:ecommerce_admin_tut/services/navigation_service.dart';
-import 'package:ecommerce_admin_tut/widgets/custom_text.dart';
-import 'package:ecommerce_admin_tut/widgets/loading.dart';
+import 'package:jamas_web/provider/auth.dart';
+import 'package:jamas_web/rounting/route_names.dart';
+import 'package:jamas_web/services/navigation_service.dart';
+import 'package:jamas_web/widgets/custom_text.dart';
+import 'package:jamas_web/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

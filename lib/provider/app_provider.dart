@@ -1,6 +1,6 @@
-import 'package:ecommerce_admin_tut/helpers/enumerators.dart';
+import 'package:jamas_web/helpers/enumerators.dart';
 
-import 'package:ecommerce_admin_tut/services/orders.dart';
+import 'package:jamas_web/services/orders.dart';
 import 'package:flutter/material.dart';
 
 import '../models/orders.dart';

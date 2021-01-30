@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:ecommerce_admin_tut/helpers/costants.dart';
-import 'package:ecommerce_admin_tut/models/user.dart';
-import 'package:ecommerce_admin_tut/services/user.dart';
+import 'package:jamas_web/helpers/costants.dart';
+import 'package:jamas_web/models/user.dart';
+import 'package:jamas_web/services/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';

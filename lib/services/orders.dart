@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce_admin_tut/helpers/costants.dart';
+import 'package:jamas_web/helpers/costants.dart';
 
 import '../models/orders.dart';
 

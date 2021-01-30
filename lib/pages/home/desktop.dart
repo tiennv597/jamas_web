@@ -1,8 +1,8 @@
-import 'package:ecommerce_admin_tut/widgets/cards/cards_list.dart';
-import 'package:ecommerce_admin_tut/widgets/custom_text.dart';
-import 'package:ecommerce_admin_tut/widgets/page_header.dart';
-import 'package:ecommerce_admin_tut/widgets/charts/sales_chart.dart';
-import 'package:ecommerce_admin_tut/widgets/top_buyer.dart';
+import 'package:jamas_web/widgets/cards/cards_list.dart';
+import 'package:jamas_web/widgets/custom_text.dart';
+import 'package:jamas_web/widgets/page_header.dart';
+import 'package:jamas_web/widgets/charts/sales_chart.dart';
+import 'package:jamas_web/widgets/top_buyer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

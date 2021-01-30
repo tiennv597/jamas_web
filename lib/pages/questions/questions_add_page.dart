@@ -1,11 +1,11 @@
-import 'package:ecommerce_admin_tut/pages/questions/widgets_questions/set_form.dart';
-import 'package:ecommerce_admin_tut/provider/tables.dart';
-import 'package:ecommerce_admin_tut/widgets/page_header.dart';
+import 'package:jamas_web/pages/questions/widgets_questions/set_form.dart';
+import 'package:jamas_web/provider/tables.dart';
+import 'package:jamas_web/widgets/page_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'controller/question_controller.dart';
-import 'package:ecommerce_admin_tut/widgets/widgets.dart';
+import 'package:jamas_web/widgets/widgets.dart';
 
 import 'widgets_questions/add_form1.dart';
 

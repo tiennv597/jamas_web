@@ -1,15 +1,15 @@
 import 'dart:math';
 
-import 'package:ecommerce_admin_tut/models/brands.dart';
-import 'package:ecommerce_admin_tut/models/categories.dart';
+import 'package:jamas_web/models/brands.dart';
+import 'package:jamas_web/models/categories.dart';
 
-import 'package:ecommerce_admin_tut/models/products.dart';
-import 'package:ecommerce_admin_tut/models/user.dart';
-import 'package:ecommerce_admin_tut/services/brands.dart';
-import 'package:ecommerce_admin_tut/services/categories.dart';
-import 'package:ecommerce_admin_tut/services/orders.dart';
-import 'package:ecommerce_admin_tut/services/products.dart';
-import 'package:ecommerce_admin_tut/services/user.dart';
+import 'package:jamas_web/models/products.dart';
+import 'package:jamas_web/models/user.dart';
+import 'package:jamas_web/services/brands.dart';
+import 'package:jamas_web/services/categories.dart';
+import 'package:jamas_web/services/orders.dart';
+import 'package:jamas_web/services/products.dart';
+import 'package:jamas_web/services/user.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_table/DatatableHeader.dart';

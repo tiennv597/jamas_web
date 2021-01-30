@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce_admin_tut/helpers/costants.dart';
-import 'package:ecommerce_admin_tut/models/categories.dart';
+import 'package:jamas_web/helpers/costants.dart';
+import 'package:jamas_web/models/categories.dart';
 
 class CategoriesServices {
   String collection = "categories";

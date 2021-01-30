@@ -1,4 +1,4 @@
-import 'package:ecommerce_admin_tut/helpers/app_colors.dart';
+import 'package:jamas_web/helpers/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget {
