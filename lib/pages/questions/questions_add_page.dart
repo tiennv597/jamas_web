@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'controller/question_controller.dart';
 import 'package:jamas_web/widgets/widgets.dart';
 
+import 'dialog/dialog_confirm_question.dart';
 import 'widgets_questions/add_form1.dart';
 
 // Trang hiển thị thêm câu hỏi và xác nhận thêm câu hỏi
@@ -139,7 +140,11 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                     children: [
                       RaisedButton(
                         onPressed: () {
-                          _showMyDialog();
+//                          DialogConfirmQuestion();
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  DialogConfirmQuestion());
                         },
                         child:
                             Text("Lưu câu hỏi", style: TextStyle(fontSize: 20)),
@@ -151,141 +156,5 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
             ),
           ]),
     ));
-  }
-
-  Future<void> _showMyDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Xác nhận thêm câu hỏi'),
-          content: Container(
-            width: Get.width / 3,
-            child: SingleChildScrollView(
-              child: ListBody(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Cấp độ: ${questionCtr.selectedLevel}.'),
-                        Text(
-                            'Thể loại: ${questionCtr.selectedType}(${questionCtr.selectedSubType})'),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: Text(
-                            'Câu hỏi: ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        TextUnderline(
-                          text: questionCtr.content,
-                          underline: questionCtr.underline,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8, bottom: 8),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // đáp án 1
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Radio(
-                                focusColor: Colors.cyanAccent,
-                                value: 1,
-                                groupValue: questionCtr.answer,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 7),
-                                child: Text('${questionCtr.answerContent1}.'),
-                              )
-                            ],
-                          ),
-                          // đáp án 2
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Radio(
-                                value: 2,
-                                groupValue: questionCtr.answer,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 7),
-                                child: Text('${questionCtr.answerContent2}.'),
-                              )
-                            ],
-                          ),
-                          // đáp án 3
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Radio(
-                                value: 3,
-                                groupValue: questionCtr.answer,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 7),
-                                child: Text('${questionCtr.answerContent3}.'),
-                              )
-                            ],
-                          ),
-                          // đáp án 4
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Radio(
-                                value: 4,
-                                groupValue: questionCtr.answer,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 7),
-                                child: Text('${questionCtr.answerContent4}.'),
-                              )
-                            ],
-                          ),
-                          // Nội dung giải thích
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Giải thích: ${questionCtr.explain}.'),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                color: Colors.red,
-                child: Text("Hủy")),
-            RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                color: Colors.green,
-                child: Text("Lưu")),
-          ],
-        );
-      },
-    );
   }
 }
