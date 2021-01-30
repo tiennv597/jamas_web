@@ -1,0 +1,7 @@
+run app: flutter run -d chrome
+update: flutter upgrade
+
+chạy cái này để hiển thị được chữ nhật bản nhé:
+Release: flutter run --release --dart-define=FLUTTER_WEB_USE_SKIA=true
+Debug: flutter run --dart-define=FLUTTER_WEB_USE_SKIA=true -d chrome
+chọn 0 để 
