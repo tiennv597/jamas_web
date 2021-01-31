@@ -113,11 +113,12 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                         onChanged: (String newValue) {
                           setState(() {
                             questionCtr.selectedSubTypeCode = newValue;
-                            questionCtr.changeSubType(newValue);
+                            questionCtr.changeForm(newValue);
                           });
                         },
                         items: questionCtr.subType
                             .map<DropdownMenuItem<String>>((SubType subType) {
+                          questionCtr.selectedSubType = subType.subTypeName;
                           return DropdownMenuItem<String>(
                             value: subType.subTypeCode,
                             child: Text(subType.subTypeName),
@@ -148,6 +149,8 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                         child:
                             Text("Lưu câu hỏi", style: TextStyle(fontSize: 20)),
                       ),
+                      Obx(() =>
+                          Text('${Get.find<QuestionController>().message}'))
                     ],
                   ),
                 )

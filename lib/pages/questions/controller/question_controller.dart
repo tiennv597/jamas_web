@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:jamas_web/pages/questions/constants/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:jamas_web/helpers/costants.dart';
 import 'package:jamas_web/pages/questions/models/sub_type.dart';
 
 class QuestionController extends GetxController {
@@ -19,7 +20,9 @@ class QuestionController extends GetxController {
   List<String> underline = []; // List các từ cần gạch chân
   var answer; // radio button group
   String explain = ''; // nội dung phần giải thích
-
+  // services Collection
+  String questionsCollection = "Questions";
+  var message = ''.obs;
 // *******các function ******//
   //
 // thay đổi cấp độ
@@ -73,9 +76,8 @@ class QuestionController extends GetxController {
 //  }
 
   // thay đổi cấp độ
-  void changeSubType(String newValue) {
-    selectedSubType = newValue;
-    if (selectedSubType == 'Trả lời nhanh') {
+  void changeForm(String newValue) {
+    if (selectedSubTypeCode == 'S4') {
       formCode = '2';
     } else {
       formCode = '1';
@@ -87,7 +89,85 @@ class QuestionController extends GetxController {
   }
 
   // Lưu câu hỏi
-  void save() {
-    print(content);
+//  void save() {
+//    questionsCollection =
+//        selectedLevel + selectedTypeCode + selectedSubTypeCode;
+//    if (saveQuestion()) {
+//      message = 'Lưu câu hỏi thành công'.obs;
+//    } else {
+//      message = 'Lưu câu hỏi thất bại';
+//    }
+//  }
+
+  bool saveQuestion() {
+    questionsCollection =
+        selectedLevel + selectedTypeCode + selectedSubTypeCode;
+    try {
+      createQuestionForm1(
+          level: selectedLevel,
+          type: selectedType,
+          subType: selectedSubType,
+          content: content,
+          answer1: answerContent1,
+          answer2: answerContent2,
+          answer3: answerContent3,
+          answer4: answerContent4,
+          explain: explain,
+          result: answer.toString(),
+          underline: underline);
+      return true;
+    } catch (e) {
+      print(e.toString());
+      return false;
+    }
+  }
+
+  void createQuestionForm1(
+      {String id,
+      String level,
+      String type,
+      String subType,
+      String content,
+      String answer1,
+      String answer2,
+      String answer3,
+      String answer4,
+      String explain,
+      String result,
+      DateTime date,
+      String comments,
+      List bold,
+      List italic,
+      List underline}) {
+    firebaseFiretore.collection(questionsCollection).doc(id).set({
+      "id": id,
+      "level": level,
+      "type": type,
+      "subType": subType,
+      "content": content,
+      "answer1": answer1,
+      "answer2": answer2,
+      "answer3": answer3,
+      "answer4": answer4,
+      "explain": explain,
+      "result": result,
+      "date": date,
+      "comments": comments,
+      "bold": bold,
+      "italic": italic,
+      "underline": underline,
+    });
+  }
+
+  updateMessage(bool check) {
+    if (check) {
+      message.update((val) {
+        message.value = 'Thêm câu hỏi thành công';
+      });
+    } else {
+      message.update((val) {
+        message.value = 'Thêm câu hỏi thất bại';
+      });
+    }
   }
 }

@@ -133,8 +133,16 @@ class DialogConfirmQuestion extends StatelessWidget {
             color: Colors.red,
             child: Text("Hủy")),
         RaisedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
+            onPressed: () async {
+//              questionCtr.save();
+              if (questionCtr.saveQuestion()) {
+                questionCtr.updateMessage(true);
+                Navigator.of(context).pop();
+              } else {
+                questionCtr.updateMessage(false);
+                Navigator.of(context).pop();
+              }
+              print(questionCtr.message);
             },
             color: Colors.green,
             child: Text("Lưu")),
