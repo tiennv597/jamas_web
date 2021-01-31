@@ -4,11 +4,9 @@ import 'package:jamas_web/widgets/page_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'constants/constants.dart';
 import 'controller/question_controller.dart';
-import 'package:jamas_web/widgets/widgets.dart';
-
 import 'dialog/dialog_confirm_question.dart';
-import 'widgets_questions/add_form1.dart';
 
 // Trang hiển thị thêm câu hỏi và xác nhận thêm câu hỏi
 class QuestionAddPage extends StatefulWidget {
@@ -58,7 +56,7 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                             questionCtr.selectedLevel = newValue;
                           });
                         },
-                        items: questionCtr.level
+                        items: LEVEL_CODE
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -87,8 +85,8 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                             questionCtr.selectedType = newValue;
                           });
                         },
-                        items: questionCtr.type
-                            .map<DropdownMenuItem<String>>((String value) {
+                        items:
+                            TYPES.map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(value),

@@ -60,25 +60,15 @@ class QuestionModel {
     _id = snapshot.data()[ID];
     _level = snapshot.data()[LEVEL];
     _type = snapshot.data()[TYPE];
-
     _subType = snapshot.data()[SUB_TYPE];
-
     _question = snapshot.data()[QUESTION];
-
     _explain = snapshot.data()[EXPLAIN];
-
     _result = snapshot.data()[ANSWER];
-
     _answer = snapshot.data()[RESULT];
-
     _date = snapshot.data()[DATE];
-
     _comments = snapshot.data()[COMMENTS];
-
     _bold = snapshot.data()[BOLD];
-
     _italic = snapshot.data()[ITALIC];
-
     _underline = snapshot.data()[UNDERLINE];
   }
 }

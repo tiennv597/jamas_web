@@ -1,39 +1,26 @@
 import 'package:get/get.dart';
+import 'package:jamas_web/pages/questions/constants/constants.dart';
 
 class QuestionController extends GetxController {
-  //Mã của form thêm câu hỏi
-  String formCode = '1';
-  // Chọn level
-  String selectedLevel = 'N5';
-  List<String> level = ['N5', 'N4', 'N3', 'N2', 'N1'];
-//Chọn thể loại câu hỏi
-  String selectedType = 'Từ vựng';
-  List<String> type = ['Từ vựng', 'Ngữ pháp', 'Đọc', 'Nghe'];
-  //Chọn sub type
-  String selectedSubType = 'Cách đọc kanji';
-  List<String> subType = [
-    'Cách đọc kanji',
-    'Cách đọc hiragane',
-    'Cấu tạo từ',
-    'Từ đồng nghĩa',
-    'Biểu hiện từ',
-    'Cách dùng từ'
-  ];
-  String content = ''; // câu hỏi
-  String answerContent1 = '';
-  String answerContent2 = '';
-  String answerContent3 = '';
-  String answerContent4 = '';
-  List<String> underline = [];
-  var answer;
-  String explain = ''; // giải thích
-  var count = 0.obs;
-  void increment() {
-    count++;
-    print(count);
-    // update();
-  }
+  String formCode = '1'; //Mã của form thêm câu hỏi
+  String selectedLevel = 'N5'; //tên cấp độ đã chọn
+  String selectedLevelCode = 'N5'; // mã cấp độ
+  String selectedType = 'Từ vựng'; //Chọn thể loại câu hỏi đã chọn
+  String selectedTypeCode = 'VO'; // Mã thể loại
+  List<String> subType = SUBTYPES_OF_VOCABULARY; // List thể loại con đã chọn
+  String selectedSubType = 'Cách đọc kanji'; // Thể loại con đã chọn
+  String selectedSubTypeCode = 'C1'; // Mã thể loại con
+  String content = ''; // nội dung câu hỏi
+  String answerContent1 = ''; // nội dung đáp án 1
+  String answerContent2 = ''; // nội dung đáp án 2
+  String answerContent3 = ''; // nội dung đáp án 3
+  String answerContent4 = ''; // nội dung đáp án 4
+  List<String> underline = []; // List các từ cần gạch chân
+  var answer; // radio button group
+  String explain = ''; // nội dung phần giải thích
 
+// *******các function ******//
+  //
 // thay đổi cấp độ
   void changeLevel(String newValue) {
     selectedLevel = newValue;
@@ -45,41 +32,19 @@ class QuestionController extends GetxController {
     // Thiết định thể loại con theo thể loại
     switch (selectedType) {
       case 'Từ vựng':
-        subType = [
-          'Cách đọc kanji',
-          'Cách đọc hiragane',
-          'Cấu tạo từ',
-          'Từ đồng nghĩa',
-          'Biểu hiện từ',
-          'Cách dùng từ'
-        ];
+        subType = SUBTYPES_OF_VOCABULARY;
         selectedSubType = 'Cách đọc kanji';
         break;
       case 'Ngữ pháp':
-        subType = [
-          'Dạng ngữ pháp',
-          'Ngữ pháp theo đoạn văn',
-          'Thành lập câu',
-        ];
+        subType = SUBTYPES_OF_GRAMMAR;
         selectedSubType = 'Dạng ngữ pháp';
         break;
       case 'Đọc':
-        subType = [
-          'Đoạn văn ngắn',
-          'Đoạn văn trung bình',
-          'Đọc hiểu tổng hợp',
-          'Đọc hiểu chủ đề',
-          'Tìm kiếm thôn tin',
-        ];
+        subType = SUBTYPES_OF_READING;
         selectedSubType = 'Đoạn văn ngắn';
         break;
       case 'Nghe':
-        subType = [
-          'Nghe hiểu chủ đề',
-          'Nghe hiểu điểm chính',
-          'Nghe hiểu khái quát',
-          'Trả lời nhanh',
-        ];
+        subType = SUBTYPES_OF_LISTENING;
         selectedSubType = 'Nghe hiểu chủ đề';
         break;
       default:
