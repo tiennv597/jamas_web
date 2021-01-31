@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import 'constants/constants.dart';
 import 'controller/question_controller.dart';
 import 'dialog/dialog_confirm_question.dart';
+import 'models/sub_type.dart';
+import 'models/type.dart';
 
 // Trang hiển thị thêm câu hỏi và xác nhận thêm câu hỏi
 class QuestionAddPage extends StatefulWidget {
@@ -70,7 +72,7 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: DropdownButton<String>(
                         dropdownColor: Colors.white,
-                        value: questionCtr.selectedType,
+                        value: questionCtr.selectedTypeCode,
                         icon: Icon(Icons.arrow_downward),
                         iconSize: 16,
                         elevation: 16,
@@ -80,16 +82,16 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                           color: Colors.deepPurpleAccent,
                         ),
                         onChanged: (String newValue) {
-                          questionCtr.changeType(newValue);
+                          questionCtr.selectedTypeCode = newValue;
                           setState(() {
-                            questionCtr.selectedType = newValue;
+                            questionCtr.changeListSubType(newValue);
                           });
                         },
                         items:
-                            TYPES.map<DropdownMenuItem<String>>((String value) {
+                            typeList.map<DropdownMenuItem<String>>((Type type) {
                           return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
+                            value: type.typeCode,
+                            child: Text(type.typeName),
                           );
                         }).toList(),
                       ),
@@ -99,7 +101,7 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: DropdownButton<String>(
                         dropdownColor: Colors.white,
-                        value: questionCtr.selectedSubType,
+                        value: questionCtr.selectedSubTypeCode,
                         icon: Icon(Icons.arrow_downward),
                         iconSize: 16,
                         elevation: 16,
@@ -109,16 +111,16 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                           color: Colors.deepPurpleAccent,
                         ),
                         onChanged: (String newValue) {
-                          questionCtr.changeSubType(newValue);
                           setState(() {
-                            questionCtr.selectedSubType = newValue;
+                            questionCtr.selectedSubTypeCode = newValue;
+                            questionCtr.changeSubType(newValue);
                           });
                         },
                         items: questionCtr.subType
-                            .map<DropdownMenuItem<String>>((String value) {
+                            .map<DropdownMenuItem<String>>((SubType subType) {
                           return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
+                            value: subType.subTypeCode,
+                            child: Text(subType.subTypeName),
                           );
                         }).toList(),
                       ),
@@ -138,7 +140,6 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                     children: [
                       RaisedButton(
                         onPressed: () {
-//                          DialogConfirmQuestion();
                           showDialog(
                               context: context,
                               builder: (BuildContext context) =>

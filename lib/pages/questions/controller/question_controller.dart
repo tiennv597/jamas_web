@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:jamas_web/pages/questions/constants/constants.dart';
+import 'package:jamas_web/pages/questions/models/sub_type.dart';
 
 class QuestionController extends GetxController {
   String formCode = '1'; //Mã của form thêm câu hỏi
@@ -7,7 +8,7 @@ class QuestionController extends GetxController {
   String selectedLevelCode = 'N5'; // mã cấp độ
   String selectedType = 'Từ vựng'; //Chọn thể loại câu hỏi đã chọn
   String selectedTypeCode = 'VO'; // Mã thể loại
-  List<String> subType = SUBTYPES_OF_VOCABULARY; // List thể loại con đã chọn
+  List<SubType> subType = subTypeListVocabulary; // List thể loại con đã chọn
   String selectedSubType = 'Cách đọc kanji'; // Thể loại con đã chọn
   String selectedSubTypeCode = 'C1'; // Mã thể loại con
   String content = ''; // nội dung câu hỏi
@@ -27,29 +28,49 @@ class QuestionController extends GetxController {
   }
 
 // thay đổi thể loại
-  void changeType(String newValue) {
-    selectedType = newValue;
+  void changeListSubType(String newValue) {
     // Thiết định thể loại con theo thể loại
-    switch (selectedType) {
-      case 'Từ vựng':
-        subType = SUBTYPES_OF_VOCABULARY;
-        selectedSubType = 'Cách đọc kanji';
+    switch (newValue) {
+      case 'VO':
+        selectedSubTypeCode = 'C1';
+        subType = subTypeListVocabulary;
         break;
-      case 'Ngữ pháp':
-        subType = SUBTYPES_OF_GRAMMAR;
-        selectedSubType = 'Dạng ngữ pháp';
+      case 'GR':
+        selectedSubTypeCode = 'A1';
+        subType = subTypeListGrammar;
         break;
-      case 'Đọc':
-        subType = SUBTYPES_OF_READING;
-        selectedSubType = 'Đoạn văn ngắn';
+      case 'RE':
+        selectedSubTypeCode = 'D1';
+        subType = subTypeListReading;
         break;
-      case 'Nghe':
-        subType = SUBTYPES_OF_LISTENING;
-        selectedSubType = 'Nghe hiểu chủ đề';
+      case 'LI':
+        selectedSubTypeCode = 'S1';
+        subType = subTypeListListening;
         break;
       default:
     }
   }
+
+  //set list thể loại
+//  String changeListType(String newValue) {
+//    selectedType = newValue;
+//    // Thiết định thể loại con theo thể loại
+//    switch (selectedTypeCode) {
+//      case 'VO':
+//        return 'VO (Từ vựng)';
+//        break;
+//      case 'GR':
+//        return 'GR (Ngữ pháp)';
+//        break;
+//      case 'RE':
+//        return 'RE (Đọc hiểu)';
+//        break;
+//      case 'LI':
+//        return 'LI (Nghe hiểu)';
+//        break;
+//      default:
+//    }
+//  }
 
   // thay đổi cấp độ
   void changeSubType(String newValue) {
