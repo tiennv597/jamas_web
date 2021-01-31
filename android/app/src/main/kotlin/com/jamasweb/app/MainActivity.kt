@@ -1,4 +1,4 @@
-package com.example.jamas_web
+package com.jamasweb.app
 
 import io.flutter.embedding.android.FlutterActivity
 
