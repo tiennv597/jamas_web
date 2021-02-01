@@ -1,6 +1,7 @@
 import 'package:jamas_web/pages/questions/controller/question_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 // form ứng với mỗi loại câu hỏi khác nhau
 class AddForm1 extends StatefulWidget {
   @override
@@ -45,9 +46,9 @@ class _AddForm1State extends State<AddForm1> {
                           value: 1,
                           groupValue: questionCtr.answer,
                           onChanged: (dynamic value) {
-                          setState(() {
-                            questionCtr.answer = value;
-                          });
+                            setState(() {
+                              questionCtr.answer = value;
+                            });
                           })),
                   new Flexible(
                     child: new TextField(

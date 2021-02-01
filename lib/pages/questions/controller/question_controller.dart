@@ -14,8 +14,34 @@ class QuestionController extends GetxController {
     });
   }
 
+  updateType(String newVal) {
+    questionModel.update((val) {
+      val.type = newVal;
+      changeListSubType(newVal);
+    });
+  }
+
+  updateSubType(String newVal) {
+    questionModel.update((val) {
+      val.subType = newVal;
+      updateFormCode(newVal);
+    });
+  }
+
+  updateFormCode(String newVal) {
+    if (newVal == 'S4') {
+      questionModel.update((val) {
+        val.formCode = '2';
+      });
+    } else {
+      questionModel.update((val) {
+        val.formCode = '1';
+      });
+    }
+  }
+
   //
-  String formCode = '1'; //Mã của form thêm câu hỏi
+
   String selectedLevel = 'N5'; //tên cấp độ đã chọn
   String selectedLevelCode = 'N5'; // mã cấp độ
   String selectedType = 'Từ vựng'; //Chọn thể loại câu hỏi đã chọn
@@ -38,37 +64,31 @@ class QuestionController extends GetxController {
   //
 // thay đổi cấp độ
 
-
 // thay đổi thể loại
   void changeListSubType(String newValue) {
     // Thiết định thể loại con theo thể loại
     switch (newValue) {
       case 'VO':
-        selectedSubTypeCode = 'C1';
+//        selectedSubTypeCode = 'C1';
+        updateSubType('C1');
         subType = subTypeListVocabulary;
         break;
       case 'GR':
-        selectedSubTypeCode = 'A1';
+//        selectedSubTypeCode = 'A1';
+        updateSubType('A1');
         subType = subTypeListGrammar;
         break;
       case 'RE':
-        selectedSubTypeCode = 'D1';
+//        selectedSubTypeCode = 'D1';
+        updateSubType('D1');
         subType = subTypeListReading;
         break;
       case 'LI':
-        selectedSubTypeCode = 'S1';
+//        selectedSubTypeCode = 'S1';
+        updateSubType('S1');
         subType = subTypeListListening;
         break;
       default:
-    }
-  }
-
-  // thay đổi cấp độ
-  void changeForm(String newValue) {
-    if (selectedSubTypeCode == 'S4') {
-      formCode = '2';
-    } else {
-      formCode = '1';
     }
   }
 

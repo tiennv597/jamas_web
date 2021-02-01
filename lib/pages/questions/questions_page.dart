@@ -13,6 +13,7 @@ import 'package:responsive_table/ResponsiveDatatable.dart';
 import 'package:responsive_table/responsive_table.dart';
 
 import 'controller/question_controller.dart';
+
 // Page này là trang chính của phần câu hỏi: thêm, xửa , xóa, cập nhật
 class QuestionsPage extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class QuestionsPage extends StatefulWidget {
 }
 
 class _QuestionsPageState extends State<QuestionsPage> {
-   final questionCtr = Get.put(QuestionController());
+  final questionCtr = Get.put(QuestionController());
   @override
   Widget build(BuildContext context) {
     final TablesProvider tablesProvider = Provider.of<TablesProvider>(context);
@@ -47,8 +48,10 @@ class _QuestionsPageState extends State<QuestionsPage> {
                 title: !tablesProvider.isSearch
                     ? RaisedButton.icon(
                         onPressed: () {
-                          appProvider.changeCurrentPage(DisplayedPage.QUESTIONS);
-                          locator<NavigationService>().navigateTo(QuestionAddRoute);
+                          appProvider
+                              .changeCurrentPage(DisplayedPage.QUESTIONS);
+                          locator<NavigationService>()
+                              .navigateTo(QuestionAddRoute);
                         },
                         icon: Icon(Icons.add),
                         label: Text("Thêm câu hỏi"))

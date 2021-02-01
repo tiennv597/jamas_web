@@ -19,9 +19,10 @@ class QuestionModel {
   static const UNDERLINE = "underline";
 
   String _id;
+  String formCode = '1'; //Mã của form thêm câu hỏi
   String _level = 'N5';
-  String _type;
-  String _subType;
+  String _type = 'VO';
+  String _subType = 'C1';
   String _content;
   String _explain;
   String _answer1;

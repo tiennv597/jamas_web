@@ -69,67 +69,70 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                     //Chọn thể loại câu hỏi
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: DropdownButton<String>(
-                        dropdownColor: Colors.white,
-                        value: questionCtr.selectedTypeCode,
-                        icon: Icon(Icons.arrow_downward),
-                        iconSize: 16,
-                        elevation: 16,
-                        style: TextStyle(color: Colors.deepPurple),
-                        underline: Container(
-                          height: 1,
-                          color: Colors.deepPurpleAccent,
+                      child: Obx(
+                        () => DropdownButton<String>(
+                          dropdownColor: Colors.white,
+                          value: questionCtr.questionModel.value.type,
+                          icon: Icon(Icons.arrow_downward),
+                          iconSize: 16,
+                          elevation: 16,
+                          style: TextStyle(color: Colors.deepPurple),
+                          underline: Container(
+                            height: 1,
+                            color: Colors.deepPurpleAccent,
+                          ),
+                          onChanged: (String newValue) {
+                            questionCtr.updateType(newValue);
+                          },
+                          items: typeList
+                              .map<DropdownMenuItem<String>>((Type type) {
+                            return DropdownMenuItem<String>(
+                              value: type.typeCode,
+                              child: Text(type.typeName),
+                            );
+                          }).toList(),
                         ),
-                        onChanged: (String newValue) {
-                          questionCtr.selectedTypeCode = newValue;
-                          setState(() {
-                            questionCtr.changeListSubType(newValue);
-                          });
-                        },
-                        items:
-                            typeList.map<DropdownMenuItem<String>>((Type type) {
-                          return DropdownMenuItem<String>(
-                            value: type.typeCode,
-                            child: Text(type.typeName),
-                          );
-                        }).toList(),
                       ),
                     ),
                     //Chọn thể loại con của câu hỏi
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: DropdownButton<String>(
-                        dropdownColor: Colors.white,
-                        value: questionCtr.selectedSubTypeCode,
-                        icon: Icon(Icons.arrow_downward),
-                        iconSize: 16,
-                        elevation: 16,
-                        style: TextStyle(color: Colors.deepPurple),
-                        underline: Container(
-                          height: 1,
-                          color: Colors.deepPurpleAccent,
+                      child: Obx(
+                        () => DropdownButton<String>(
+                          dropdownColor: Colors.white,
+                          value: questionCtr.questionModel.value.subType,
+                          icon: Icon(Icons.arrow_downward),
+                          iconSize: 16,
+                          elevation: 16,
+                          style: TextStyle(color: Colors.deepPurple),
+                          underline: Container(
+                            height: 1,
+                            color: Colors.deepPurpleAccent,
+                          ),
+                          onChanged: (String newValue) {
+                            questionCtr.updateSubType(newValue);
+//                            setState(() {
+//                              questionCtr.selectedSubTypeCode = newValue;
+//                              questionCtr.changeForm(newValue);
+//                            });
+                          },
+                          items: questionCtr.subType
+                              .map<DropdownMenuItem<String>>((SubType subType) {
+                            questionCtr.selectedSubType = subType.subTypeName;
+                            return DropdownMenuItem<String>(
+                              value: subType.subTypeCode,
+                              child: Text(subType.subTypeName),
+                            );
+                          }).toList(),
                         ),
-                        onChanged: (String newValue) {
-                          setState(() {
-                            questionCtr.selectedSubTypeCode = newValue;
-                            questionCtr.changeForm(newValue);
-                          });
-                        },
-                        items: questionCtr.subType
-                            .map<DropdownMenuItem<String>>((SubType subType) {
-                          questionCtr.selectedSubType = subType.subTypeName;
-                          return DropdownMenuItem<String>(
-                            value: subType.subTypeCode,
-                            child: Text(subType.subTypeName),
-                          );
-                        }).toList(),
                       ),
                     ),
                   ],
                 )
               ],
             ),
-            FormAddQuestion(),
+            Obx(() =>
+                FormAddQuestion(questionCtr.questionModel.value.formCode)),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,

@@ -4,17 +4,20 @@ import 'package:jamas_web/pages/questions/widgets_questions/add_form2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FormAddQuestion extends StatefulWidget {
-  @override
-  _FormAddQuestionState createState() => _FormAddQuestionState();
-}
+//class FormAddQuestion extends StatefulWidget {
+//  @override
+//  _FormAddQuestionState createState() => _FormAddQuestionState();
+//}
 
-class _FormAddQuestionState extends State<FormAddQuestion> {
-  final QuestionController questionCtr = Get.find();
+class FormAddQuestion extends StatelessWidget {
+//  final QuestionController questionCtr = Get.find();
+  final String formCode;
+
+  FormAddQuestion(this.formCode);
 
   @override
   Widget build(BuildContext context) {
-    switch (questionCtr.formCode) {
+    switch (formCode) {
       case '1':
         {
           return AddForm1();
