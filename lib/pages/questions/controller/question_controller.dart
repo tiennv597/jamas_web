@@ -1,9 +1,20 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:jamas_web/helpers/costants.dart';
+import 'package:jamas_web/pages/questions/models/question.dart';
 import 'package:jamas_web/pages/questions/models/sub_type.dart';
 
 class QuestionController extends GetxController {
+  //
+  final questionModel = new QuestionModel().obs;
+
+  updateLevel(String newVal) {
+    questionModel.update((val) {
+      val.level = newVal;
+    });
+  }
+
+  //
   String formCode = '1'; //Mã của form thêm câu hỏi
   String selectedLevel = 'N5'; //tên cấp độ đã chọn
   String selectedLevelCode = 'N5'; // mã cấp độ
@@ -26,9 +37,7 @@ class QuestionController extends GetxController {
 // *******các function ******//
   //
 // thay đổi cấp độ
-  void changeLevel(String newValue) {
-    selectedLevel = newValue;
-  }
+
 
 // thay đổi thể loại
   void changeListSubType(String newValue) {
@@ -53,27 +62,6 @@ class QuestionController extends GetxController {
       default:
     }
   }
-
-  //set list thể loại
-//  String changeListType(String newValue) {
-//    selectedType = newValue;
-//    // Thiết định thể loại con theo thể loại
-//    switch (selectedTypeCode) {
-//      case 'VO':
-//        return 'VO (Từ vựng)';
-//        break;
-//      case 'GR':
-//        return 'GR (Ngữ pháp)';
-//        break;
-//      case 'RE':
-//        return 'RE (Đọc hiểu)';
-//        break;
-//      case 'LI':
-//        return 'LI (Nghe hiểu)';
-//        break;
-//      default:
-//    }
-//  }
 
   // thay đổi cấp độ
   void changeForm(String newValue) {
@@ -169,5 +157,20 @@ class QuestionController extends GetxController {
         message.value = 'Thêm câu hỏi thất bại';
       });
     }
+  }
+
+  clearALl() {
+    content = ''; // nội dung câu hỏi
+    answerContent1 = ''; // nội dung đáp án 1
+    answerContent2 = ''; // nội dung đáp án 2
+    answerContent3 = ''; // nội dung đáp án 3
+    answerContent4 = ''; // nội dung đáp án 4
+    underline = []; // List các từ cần gạch chân
+    answer = 0; // radio button group
+    explain = ''; // nội dung phần giải thích
+    // services Collection
+    message.update((val) {
+      message.value = '';
+    });
   }
 }

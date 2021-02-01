@@ -41,30 +41,29 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                     //Chọn cấp độ câu hỏi
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: DropdownButton<String>(
-                        dropdownColor: Colors.white,
-                        value: questionCtr.selectedLevel,
-                        icon: Icon(Icons.arrow_downward),
-                        iconSize: 16,
-                        elevation: 16,
-                        style: TextStyle(color: Colors.deepPurple),
-                        underline: Container(
-                          height: 1,
-                          color: Colors.deepPurpleAccent,
+                      child: Obx(
+                        () => DropdownButton<String>(
+                          dropdownColor: Colors.white,
+                          value: questionCtr.questionModel.value.level,
+                          icon: Icon(Icons.arrow_downward),
+                          iconSize: 16,
+                          elevation: 16,
+                          style: TextStyle(color: Colors.deepPurple),
+                          underline: Container(
+                            height: 1,
+                            color: Colors.deepPurpleAccent,
+                          ),
+                          onChanged: (String newValue) {
+                            questionCtr.updateLevel(newValue);
+                          },
+                          items: LEVEL_CODE
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
                         ),
-                        onChanged: (String newValue) {
-                          questionCtr.changeLevel(newValue);
-                          setState(() {
-                            questionCtr.selectedLevel = newValue;
-                          });
-                        },
-                        items: LEVEL_CODE
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
                       ),
                     ),
                     //Chọn thể loại câu hỏi
@@ -139,15 +138,33 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
-                      RaisedButton(
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  DialogConfirmQuestion());
-                        },
-                        child:
-                            Text("Lưu câu hỏi", style: TextStyle(fontSize: 20)),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    DialogConfirmQuestion());
+                          },
+                          color: Colors.green,
+                          child: Text(
+                            "Lưu câu hỏi",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            questionCtr.clearALl();
+                          },
+                          color: Colors.red,
+                          child: Text("Xóa tất cả",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white)),
+                        ),
                       ),
                       Obx(() =>
                           Text('${Get.find<QuestionController>().message}'))

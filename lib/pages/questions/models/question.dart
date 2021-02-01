@@ -19,7 +19,7 @@ class QuestionModel {
   static const UNDERLINE = "underline";
 
   String _id;
-  String _level;
+  String _level = 'N5';
   String _type;
   String _subType;
   String _content;
@@ -35,22 +35,22 @@ class QuestionModel {
   List _italic;
   List _underline;
 //  getters
-  String get id => _id;
-  String get level => _level;
-  String get type => _type;
-  String get subType => _subType;
-  String get content => _content;
-  String get explain => _explain;
-  String get result => _result;
-  String get answer1 => _answer1;
-  String get answer2 => _answer2;
-  String get answer3 => _answer3;
-  String get answer4 => _answer4;
-  DateTime get date => _date;
-  String get comments => _comments;
-  List get bold => _bold;
-  List get italic => _italic;
-  List get underline => _underline;
+//  String get id => _id;
+//  String get level => _level;
+//  String get type => _type;
+//  String get subType => _subType;
+//  String get content => _content;
+//  String get explain => _explain;
+//  String get result => _result;
+//  String get answer1 => _answer1;
+//  String get answer2 => _answer2;
+//  String get answer3 => _answer3;
+//  String get answer4 => _answer4;
+//  DateTime get date => _date;
+//  String get comments => _comments;
+//  List get bold => _bold;
+//  List get italic => _italic;
+//  List get underline => _underline;
   QuestionModel.fromSnapshot(DocumentSnapshot snapshot) {
     _id = snapshot.data()[ID];
     _level = snapshot.data()[LEVEL];
@@ -69,4 +69,104 @@ class QuestionModel {
     _italic = snapshot.data()[ITALIC];
     _underline = snapshot.data()[UNDERLINE];
   }
+
+  String get id => _id;
+
+  QuestionModel();
+
+  set underline(List value) {
+    _underline = value;
+  }
+
+  set italic(List value) {
+    _italic = value;
+  }
+
+  set bold(List value) {
+    _bold = value;
+  }
+
+  set comments(String value) {
+    _comments = value;
+  }
+
+  set date(DateTime value) {
+    _date = value;
+  }
+
+  set result(String value) {
+    _result = value;
+  }
+
+  set answer4(String value) {
+    _answer4 = value;
+  }
+
+  set answer3(String value) {
+    _answer3 = value;
+  }
+
+  set answer2(String value) {
+    _answer2 = value;
+  }
+
+  set answer1(String value) {
+    _answer1 = value;
+  }
+
+  set explain(String value) {
+    _explain = value;
+  }
+
+  set content(String value) {
+    _content = value;
+  }
+
+  // ignore: unnecessary_getters_setters
+  set subType(String value) {
+    _subType = value;
+  }
+
+  // ignore: unnecessary_getters_setters
+  set type(String value) {
+    _type = value;
+  }
+
+  set level(String value) {
+    _level = value;
+  }
+
+  set id(String value) {
+    _id = value;
+  }
+
+  String get level => _level;
+
+  String get type => _type;
+
+  String get subType => _subType;
+
+  String get content => _content;
+
+  String get explain => _explain;
+
+  String get answer1 => _answer1;
+
+  String get answer2 => _answer2;
+
+  String get answer3 => _answer3;
+
+  String get answer4 => _answer4;
+
+  String get result => _result;
+
+  DateTime get date => _date;
+
+  String get comments => _comments;
+
+  List get bold => _bold;
+
+  List get italic => _italic;
+
+  List get underline => _underline;
 }
