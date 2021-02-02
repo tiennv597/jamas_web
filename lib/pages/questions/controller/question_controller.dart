@@ -7,6 +7,8 @@ import 'package:jamas_web/pages/questions/models/sub_type.dart';
 class QuestionController extends GetxController {
   //
   final questionModel = new QuestionModel().obs;
+  List<SubType> subType = subTypeListVocabulary; // List thể loại con đã chọn
+    String selectedSubType = 'Cách đọc kanji'; // Thể loại con đã chọn
 
   updateLevel(String newVal) {
     questionModel.update((val) {
@@ -42,13 +44,8 @@ class QuestionController extends GetxController {
 
   //
 
-  String selectedLevel = 'N5'; //tên cấp độ đã chọn
-  String selectedLevelCode = 'N5'; // mã cấp độ
-  String selectedType = 'Từ vựng'; //Chọn thể loại câu hỏi đã chọn
-  String selectedTypeCode = 'VO'; // Mã thể loại
-  List<SubType> subType = subTypeListVocabulary; // List thể loại con đã chọn
-  String selectedSubType = 'Cách đọc kanji'; // Thể loại con đã chọn
-  String selectedSubTypeCode = 'C1'; // Mã thể loại con
+
+//  String selectedSubTypeCode = 'C1'; // Mã thể loại con
   String content = ''; // nội dung câu hỏi
   String answerContent1 = ''; // nội dung đáp án 1
   String answerContent2 = ''; // nội dung đáp án 2
@@ -69,22 +66,18 @@ class QuestionController extends GetxController {
     // Thiết định thể loại con theo thể loại
     switch (newValue) {
       case 'VO':
-//        selectedSubTypeCode = 'C1';
         updateSubType('C1');
         subType = subTypeListVocabulary;
         break;
       case 'GR':
-//        selectedSubTypeCode = 'A1';
         updateSubType('A1');
         subType = subTypeListGrammar;
         break;
       case 'RE':
-//        selectedSubTypeCode = 'D1';
         updateSubType('D1');
         subType = subTypeListReading;
         break;
       case 'LI':
-//        selectedSubTypeCode = 'S1';
         updateSubType('S1');
         subType = subTypeListListening;
         break;
@@ -108,13 +101,14 @@ class QuestionController extends GetxController {
 //  }
 
   bool saveQuestion() {
-    questionsCollection =
-        selectedLevel + selectedTypeCode + selectedSubTypeCode;
+    questionsCollection = questionModel.value.level +
+        questionModel.value.type +
+        questionModel.value.subType;
     try {
       createQuestionForm1(
-          level: selectedLevel,
-          type: selectedType,
-          subType: selectedSubType,
+          level: questionModel.value.level,
+          type: questionModel.value.type,
+          subType: questionModel.value.subType,
           content: content,
           answer1: answerContent1,
           answer2: answerContent2,

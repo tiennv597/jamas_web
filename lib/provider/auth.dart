@@ -46,7 +46,9 @@ class AuthProvider with ChangeNotifier {
       notifyListeners();
       await auth
           .signInWithEmailAndPassword(
-              email: email.text.trim(), password: password.text.trim())
+//              email: email.text.trim(), password: password.text.trim())
+              email: 'tiennv597@gmail.com',
+              password: '123456789')
           .then((value) async {
         await prefs.setString("id", value.user.uid);
       });

@@ -25,9 +25,9 @@ class DialogConfirmQuestion extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Cấp độ: ${questionCtr.selectedLevel}.'),
+                    Text('Cấp độ: ${questionCtr.questionModel.value.level}.'),
                     Text(
-                        'Thể loại: ${questionCtr.selectedType}(${questionCtr.selectedSubType})'),
+                        'Thể loại: ${questionCtr.questionModel.value.type}(${questionCtr.selectedSubType})'),
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
                       child: Text(

@@ -1,5 +1,5 @@
 //List mã cấp độ
-const List<String> LEVEL_CODE = ['N5', 'N4', 'N3', 'N2', 'N1'];
+//const List<String> LEVEL_CODE = ['N5', 'N4', 'N3', 'N2', 'N1'];
 //const List<String> TYPES = ['Từ vựng', 'Ngữ pháp', 'Đọc', 'Nghe'];
 //// List mã thể loại
 //const List<String> TYPES_CODE = ['VO', 'GR', 'RE', 'LI'];

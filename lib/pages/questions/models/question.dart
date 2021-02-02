@@ -20,7 +20,7 @@ class QuestionModel {
 
   String _id;
   String formCode = '1'; //Mã của form thêm câu hỏi
-  String _level = 'N5';
+  String _level = 'N5'; // cấp độ
   String _type = 'VO';
   String _subType = 'C1';
   String _content;
