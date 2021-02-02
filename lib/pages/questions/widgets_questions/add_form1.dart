@@ -23,7 +23,7 @@ class _AddForm1State extends State<AddForm1> {
             children: [
               TextFormField(
                 onChanged: (text) {
-                  questionCtr.content = text;
+                  questionCtr.questionModel.value.content = text;
                 },
                 cursorColor: Colors.deepPurpleAccent,
                 minLines: 3,
@@ -53,7 +53,7 @@ class _AddForm1State extends State<AddForm1> {
                   new Flexible(
                     child: new TextField(
                       onChanged: (text) {
-                        questionCtr.answerContent1 = text;
+                        questionCtr.questionModel.value.answer1 = text;
                       },
                       decoration: InputDecoration(labelText: 'Nhập đáp án 1'),
                     ),
@@ -83,7 +83,7 @@ class _AddForm1State extends State<AddForm1> {
                   new Flexible(
                     child: new TextField(
                       onChanged: (text) {
-                        questionCtr.answerContent2 = text;
+                        questionCtr.questionModel.value.answer2 = text;
                       },
                       decoration: InputDecoration(labelText: 'Nhập đáp án 2'),
                     ),
@@ -113,7 +113,7 @@ class _AddForm1State extends State<AddForm1> {
                   new Flexible(
                     child: new TextField(
                       onChanged: (text) {
-                        questionCtr.answerContent3 = text;
+                        questionCtr.questionModel.value.answer3 = text;
                       },
                       decoration: InputDecoration(labelText: 'Nhập đáp án 3'),
                     ),
@@ -143,7 +143,7 @@ class _AddForm1State extends State<AddForm1> {
                   new Flexible(
                     child: new TextField(
                       onChanged: (text) {
-                        questionCtr.answerContent4 = text;
+                        questionCtr.questionModel.value.answer4 = text;
                       },
                       decoration: InputDecoration(labelText: 'Nhập đáp án 4'),
                     ),

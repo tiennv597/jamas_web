@@ -4,11 +4,6 @@ import 'package:jamas_web/pages/questions/controller/question_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//class DialogConfirmQuestion extends StatefulWidget {
-//  @override
-//  _DialogConfirmQuestionState createState() => _DialogConfirmQuestionState();
-//}
-
 class DialogConfirmQuestion extends StatelessWidget {
   final QuestionController questionCtr = Get.find();
   @override
@@ -38,7 +33,7 @@ class DialogConfirmQuestion extends StatelessWidget {
                       ),
                     ),
                     TextUnderline(
-                      text: questionCtr.content,
+                      text: questionCtr.questionModel.value.content,
                       underline: questionCtr.underline,
                     ),
                   ],
@@ -61,7 +56,8 @@ class DialogConfirmQuestion extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 7),
-                            child: Text('${questionCtr.answerContent1}.'),
+                            child: Text(
+                                '${questionCtr.questionModel.value.answer1}.'),
                           )
                         ],
                       ),
@@ -75,7 +71,8 @@ class DialogConfirmQuestion extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 7),
-                            child: Text('${questionCtr.answerContent2}.'),
+                            child: Text(
+                                '${questionCtr.questionModel.value.answer2}.'),
                           )
                         ],
                       ),
@@ -89,7 +86,8 @@ class DialogConfirmQuestion extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 7),
-                            child: Text('${questionCtr.answerContent3}.'),
+                            child: Text(
+                                '${questionCtr.questionModel.value.answer3}.'),
                           )
                         ],
                       ),
@@ -103,7 +101,8 @@ class DialogConfirmQuestion extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 7),
-                            child: Text('${questionCtr.answerContent4}.'),
+                            child: Text(
+                                '${questionCtr.questionModel.value.answer4}.'),
                           )
                         ],
                       ),

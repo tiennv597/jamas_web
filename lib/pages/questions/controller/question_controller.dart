@@ -6,9 +6,9 @@ import 'package:jamas_web/pages/questions/models/sub_type.dart';
 
 class QuestionController extends GetxController {
   //
-  final questionModel = new QuestionModel().obs;
+  var questionModel = new QuestionModel().obs;
   List<SubType> subType = subTypeListVocabulary; // List thể loại con đã chọn
-    String selectedSubType = 'Cách đọc kanji'; // Thể loại con đã chọn
+  String selectedSubType = 'Cách đọc kanji'; // Thể loại con đã chọn
 
   updateLevel(String newVal) {
     questionModel.update((val) {
@@ -44,13 +44,10 @@ class QuestionController extends GetxController {
 
   //
 
-
-//  String selectedSubTypeCode = 'C1'; // Mã thể loại con
-  String content = ''; // nội dung câu hỏi
-  String answerContent1 = ''; // nội dung đáp án 1
-  String answerContent2 = ''; // nội dung đáp án 2
-  String answerContent3 = ''; // nội dung đáp án 3
-  String answerContent4 = ''; // nội dung đáp án 4
+//  String answerContent1 = ''; // nội dung đáp án 1
+//  String answerContent2 = ''; // nội dung đáp án 2
+//  String answerContent3 = ''; // nội dung đáp án 3
+//  String answerContent4 = ''; // nội dung đáp án 4
   List<String> underline = []; // List các từ cần gạch chân
   var answer; // radio button group
   String explain = ''; // nội dung phần giải thích
@@ -109,11 +106,11 @@ class QuestionController extends GetxController {
           level: questionModel.value.level,
           type: questionModel.value.type,
           subType: questionModel.value.subType,
-          content: content,
-          answer1: answerContent1,
-          answer2: answerContent2,
-          answer3: answerContent3,
-          answer4: answerContent4,
+          content: questionModel.value.content,
+          answer1: questionModel.value.answer1,
+          answer2: questionModel.value.answer2,
+          answer3: questionModel.value.answer3,
+          answer4: questionModel.value.answer4,
           explain: explain,
           result: answer.toString(),
           underline: underline);
@@ -174,14 +171,7 @@ class QuestionController extends GetxController {
   }
 
   clearALl() {
-    content = ''; // nội dung câu hỏi
-    answerContent1 = ''; // nội dung đáp án 1
-    answerContent2 = ''; // nội dung đáp án 2
-    answerContent3 = ''; // nội dung đáp án 3
-    answerContent4 = ''; // nội dung đáp án 4
-    underline = []; // List các từ cần gạch chân
-    answer = 0; // radio button group
-    explain = ''; // nội dung phần giải thích
+    questionModel = new QuestionModel().obs;
     // services Collection
     message.update((val) {
       message.value = '';
