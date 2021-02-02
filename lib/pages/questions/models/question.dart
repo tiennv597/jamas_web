@@ -23,18 +23,18 @@ class QuestionModel {
   String _level = 'N5'; // cấp độ
   String _type = 'VO';
   String _subType = 'C1';
-  String _content;
-  String _explain;
-  String _answer1;
-  String _answer2;
-  String _answer3;
-  String _answer4;
-  String _result;
+  String _content = '';
+  String _explain = '';
+  String _answer1 = '';
+  String _answer2 = '';
+  String _answer3 = '';
+  String _answer4 = '';
+  String _result = '';
   DateTime _date;
-  String _comments;
-  List _bold;
-  List _italic;
-  List _underline;
+  String _comments = '';
+  List _bold = [];
+  List _italic = [];
+  List _underline = [];
 //  getters
 //  String get id => _id;
 //  String get level => _level;

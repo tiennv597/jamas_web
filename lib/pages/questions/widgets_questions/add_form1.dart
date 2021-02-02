@@ -22,6 +22,7 @@ class _AddForm1State extends State<AddForm1> {
             mainAxisSize: MainAxisSize.max,
             children: [
               TextFormField(
+                controller: questionCtr.contentController,
                 onChanged: (text) {
                   questionCtr.questionModel.value.content = text;
                 },
@@ -52,6 +53,7 @@ class _AddForm1State extends State<AddForm1> {
                           })),
                   new Flexible(
                     child: new TextField(
+                      controller: questionCtr.answer1Controller,
                       onChanged: (text) {
                         questionCtr.questionModel.value.answer1 = text;
                       },
@@ -82,6 +84,7 @@ class _AddForm1State extends State<AddForm1> {
                   ),
                   new Flexible(
                     child: new TextField(
+                      controller: questionCtr.answer2Controller,
                       onChanged: (text) {
                         questionCtr.questionModel.value.answer2 = text;
                       },
@@ -112,6 +115,7 @@ class _AddForm1State extends State<AddForm1> {
                   ),
                   new Flexible(
                     child: new TextField(
+                      controller: questionCtr.answer3Controller,
                       onChanged: (text) {
                         questionCtr.questionModel.value.answer3 = text;
                       },
@@ -142,6 +146,7 @@ class _AddForm1State extends State<AddForm1> {
                   ),
                   new Flexible(
                     child: new TextField(
+                      controller: questionCtr.answer4Controller,
                       onChanged: (text) {
                         questionCtr.questionModel.value.answer4 = text;
                       },
@@ -158,6 +163,7 @@ class _AddForm1State extends State<AddForm1> {
             mainAxisSize: MainAxisSize.max,
             children: [
               TextFormField(
+                controller: questionCtr.explainController,
                 onChanged: (text) {
                   questionCtr.explain = text;
                 },
@@ -177,6 +183,7 @@ class _AddForm1State extends State<AddForm1> {
             mainAxisSize: MainAxisSize.max,
             children: [
               TextFormField(
+                controller: questionCtr.underlineController,
                 onChanged: (text) {
                   questionCtr.addUnderline(text);
                 },

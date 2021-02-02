@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:jamas_web/helpers/costants.dart';
@@ -6,6 +7,17 @@ import 'package:jamas_web/pages/questions/models/sub_type.dart';
 
 class QuestionController extends GetxController {
   //
+
+  final contentController = TextEditingController();
+  final answer1Controller = TextEditingController();
+  final answer2Controller = TextEditingController();
+  final answer3Controller = TextEditingController();
+  final answer4Controller = TextEditingController();
+  final explainController = TextEditingController();
+  final resultController = TextEditingController();
+  final commentsController = TextEditingController();
+  final underlineController = TextEditingController();
+
   var questionModel = new QuestionModel().obs;
   List<SubType> subType = subTypeListVocabulary; // List thể loại con đã chọn
   String selectedSubType = 'Cách đọc kanji'; // Thể loại con đã chọn
@@ -171,8 +183,21 @@ class QuestionController extends GetxController {
   }
 
   clearALl() {
-    questionModel = new QuestionModel().obs;
-    // services Collection
+    questionModel.update((val) {
+      contentController.text = '';
+      answer1Controller.text = '';
+      answer2Controller.text = '';
+      answer3Controller.text = '';
+      answer4Controller.text = '';
+      explainController.text = '';
+      resultController.text = '';
+      commentsController.text = '';
+      underlineController.text = '';
+      val.bold = [];
+      val.italic = [];
+      val.underline = [];
+    });
+    answer = '';
     message.update((val) {
       message.value = '';
     });
