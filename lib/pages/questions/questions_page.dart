@@ -1,6 +1,5 @@
 import 'package:jamas_web/helpers/enumerators.dart';
 import 'package:jamas_web/locator.dart';
-import 'package:jamas_web/pages/login/login.dart';
 import 'package:jamas_web/provider/app_provider.dart';
 import 'package:jamas_web/provider/tables.dart';
 import 'package:jamas_web/rounting/route_names.dart';
@@ -8,7 +7,7 @@ import 'package:jamas_web/services/navigation_service.dart';
 import 'package:jamas_web/widgets/page_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
+
 import 'package:responsive_table/ResponsiveDatatable.dart';
 import 'package:responsive_table/responsive_table.dart';
 
@@ -24,8 +23,6 @@ class _QuestionsPageState extends State<QuestionsPage> {
   final questionCtr = Get.put(QuestionController());
   @override
   Widget build(BuildContext context) {
-    final TablesProvider tablesProvider = Provider.of<TablesProvider>(context);
-    final AppProvider appProvider = Provider.of<AppProvider>(context);
     return SingleChildScrollView(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -45,11 +42,9 @@ class _QuestionsPageState extends State<QuestionsPage> {
               shadowColor: Colors.black,
               clipBehavior: Clip.none,
               child: ResponsiveDatatable(
-                title: !tablesProvider.isSearch
+                title: context.isTablet
                     ? RaisedButton.icon(
                         onPressed: () {
-                          appProvider
-                              .changeCurrentPage(DisplayedPage.QUESTIONS);
                           locator<NavigationService>()
                               .navigateTo(QuestionAddRoute);
                         },
@@ -57,7 +52,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                         label: Text("Thêm câu hỏi"))
                     : null,
                 actions: [
-                  if (tablesProvider.isSearch)
+                  if (context.isTablet)
                     Expanded(
                         child: TextField(
                       decoration: InputDecoration(
@@ -65,71 +60,40 @@ class _QuestionsPageState extends State<QuestionsPage> {
                               icon: Icon(Icons.cancel),
                               onPressed: () {
                                 setState(() {
-                                  tablesProvider.isSearch = false;
+                                  //context.isTablet = false;
                                 });
                               }),
                           suffixIcon: IconButton(
                               icon: Icon(Icons.search), onPressed: () {})),
                     )),
-                  if (!tablesProvider.isSearch)
+                  if (!context.isTablet)
                     IconButton(
                         icon: Icon(Icons.search),
                         onPressed: () {
                           setState(() {
-                            tablesProvider.isSearch = true;
+                            //context.isTablet = true;
                           });
                         })
                 ],
-                headers: tablesProvider.questionsTableHeader,
-                source: tablesProvider.questionsTableSource,
-                selecteds: tablesProvider.selecteds,
-                showSelect: tablesProvider.showSelect,
+                //headers: tablesProvider.questionsTableHeader,
+                //source: tablesProvider.questionsTableSource,
+                //selecteds: tablesProvider.selecteds,
+                //showSelect: tablesProvider.showSelect,
                 autoHeight: false,
                 onTabRow: (data) {
                   print(data);
                 },
-                onSort: tablesProvider.onSort,
-                sortAscending: tablesProvider.sortAscending,
-                sortColumn: tablesProvider.sortColumn,
-                isLoading: tablesProvider.isLoading,
-                onSelect: tablesProvider.onSelected,
-                onSelectAll: tablesProvider.onSelectAll,
+                // onSort: tablesProvider.onSort,
+                // sortAscending: tablesProvider.sortAscending,
+                // sortColumn: tablesProvider.sortColumn,
+                // isLoading: tablesProvider.isLoading,
+                // onSelect: tablesProvider.onSelected,
+                // onSelectAll: tablesProvider.onSelectAll,
                 footers: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Text("Rows per page:"),
                   ),
-                  if (tablesProvider.perPages != null)
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: DropdownButton(
-                          value: tablesProvider.currentPerPage,
-                          items: tablesProvider.perPages
-                              .map((e) => DropdownMenuItem(
-                                    child: Text("$e"),
-                                    value: e,
-                                  ))
-                              .toList(),
-                          onChanged: (value) {}),
-                    ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15),
-                    child: Text(
-                        "${tablesProvider.currentPage} - ${tablesProvider.currentPage} of ${tablesProvider.total}"),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      size: 16,
-                    ),
-                    onPressed: tablesProvider.previous,
-                    padding: EdgeInsets.symmetric(horizontal: 15),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.arrow_forward_ios, size: 16),
-                    onPressed: tablesProvider.next,
-                    padding: EdgeInsets.symmetric(horizontal: 15),
-                  )
                 ],
               ),
             ),

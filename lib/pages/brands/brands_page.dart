@@ -1,9 +1,9 @@
 import 'package:jamas_web/provider/tables.dart';
 import 'package:jamas_web/widgets/page_header.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_table/ResponsiveDatatable.dart';
 import 'package:responsive_table/responsive_table.dart';
+import 'package:provider/provider.dart';
 
 class BrandsPage extends StatefulWidget {
   @override
