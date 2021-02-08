@@ -1,11 +1,12 @@
 import 'dart:async';
-import 'dart:io';
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jamas_web/pages/questions/controller/question_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase/firebase.dart' as fb;
 
 class AddForm2 extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class _AddForm2State extends State<AddForm2> {
   String _uploadedFileURL;
   final _picker = ImagePicker();
   PickedFile image;
+  String imgUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,7 @@ class _AddForm2State extends State<AddForm2> {
                   RaisedButton(
                     child: Text('Upload Image'),
                     color: Colors.lightBlue,
-                    onPressed: () => uploadImageFile(),
+                    onPressed: () => uploadToStorage(),
                   ),
                 ],
               ),
@@ -112,6 +114,7 @@ class _AddForm2State extends State<AddForm2> {
               new Row(
                 children: <Widget>[
                   Padding(
+
                     padding: const EdgeInsets.only(top: 14, right: 8),
                     child: Radio(
                         value: 3,
@@ -187,25 +190,46 @@ class _AddForm2State extends State<AddForm2> {
     );
   }
 
-  Future<Uri> uploadImageFile() {
-    InputElement uploadInput = FileUploadInputElement()..accept = 'image/*';
-    uploadInput.click();
-    uploadInput.onChange.listen((event) {
-      final file = uploadInput.files.first;
+  // Future<Uri> uploadImageFile({@required Function(File file) onSelected}) {
+  //   InputElement uploadInput = FileUploadInputElement()..accept = 'image/*';
+  //   uploadInput.click();
+  //   uploadInput.onChange.listen((event) {
+  //     final file = uploadInput.files.first;
+  //     final reader = FileReader();
+  //     reader.readAsDataUrl(file);
+  //     reader.onLoadEnd.listen((event) {
+  //       onSelected(file);
+  //     });
+  //   });
+  // }
+
+  // void uploadTOStorage() {
+  //   final dateTime = DateTime.now();
+  //   final path = 'tien/$dateTime';
+  //   uploadImageFile(onSelected: (file) {
+  //     fb
+  //         .storage()
+  //         .refFromURL('gs://japanese-master.appspot.com')
+  //         .child(path)
+  //         .put(file);
+  //   });
+  // }
+
+  uploadToStorage() {
+    InputElement input = FileUploadInputElement()..accept = 'image/*';
+    FirebaseStorage fs = FirebaseStorage.instance;
+    input.click();
+    input.onChange.listen((event) {
+      final file = input.files.first;
       final reader = FileReader();
       reader.readAsDataUrl(file);
-      reader.onLoadEnd.listen((event) {
-        print('done');
+      reader.onLoadEnd.listen((event) async {
+        var snapshot = await fs.ref('n5').child('newfile').putBlob(file);
+        String downloadUrl = await snapshot.ref.getDownloadURL();
+        setState(() {
+          imgUrl = downloadUrl;
+        });
       });
     });
-  }
-
-  Future chooseFile() async {
-    image = await _picker.getImage(source: ImageSource.gallery);
-    // await ImagePicker.getImage(source: ImageSource.gallery).then((image) {
-    //   setState(() {
-    //
-    //   });
-    // });
   }
 }

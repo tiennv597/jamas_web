@@ -51,15 +51,6 @@ class SideMenuTabletDesktop extends StatelessWidget {
               },
             ),
             SideMenuItemDesktop(
-              icon: Icons.shopping_cart,
-              text: 'Orders',
-              active: appProvider.currentPage == DisplayedPage.ORDERS,
-              onTap: () {
-                appProvider.changeCurrentPage(DisplayedPage.ORDERS);
-                locator<NavigationService>().navigateTo(OrdersRoute);
-              },
-            ),
-            SideMenuItemDesktop(
               icon: Icons.shopping_basket_outlined,
               text: 'Products',
               active: appProvider.currentPage == DisplayedPage.PRODUCTS,
@@ -92,7 +83,7 @@ class SideMenuTabletDesktop extends StatelessWidget {
               active: appProvider.currentPage == DisplayedPage.QUESTIONS,
               onTap: () {
                 appProvider.changeCurrentPage(DisplayedPage.QUESTIONS);
-              locator<NavigationService>().navigateTo(QuestionsRoute);
+                locator<NavigationService>().navigateTo(QuestionsRoute);
               },
             ),
           ],
