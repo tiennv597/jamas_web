@@ -1,17 +1,16 @@
 import 'dart:html';
-import 'package:jamas_web/costants/costants.dart';
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:jamas_web/helpers/costants.dart';
+import 'package:jamas_web/pages/questions/controller/question_controller.dart';
 import 'package:jamas_web/pages/questions/models/question.dart';
 import 'package:jamas_web/pages/questions/models/sub_type.dart';
 
-class QuestionController extends GetxController {
+class AddForm3Controller extends GetxController {
+  final QuestionController questionCtr = Get.find();
   //
-  String problem = LIS1_ASK.obs();
   String imgUrl; // đường dẫn của file đã lưu
   final contentController = TextEditingController();
   final answer1Controller = TextEditingController();
@@ -116,15 +115,11 @@ class QuestionController extends GetxController {
 //      message = 'Lưu câu hỏi thất bại';
 //    }
 //  }
-  String renderQuestionCode() {
+
+  bool saveQuestion() {
     questionsCollection = questionModel.value.level +
         questionModel.value.type +
         questionModel.value.subType;
-    return questionsCollection;
-  }
-
-  bool saveQuestion() {
-    renderQuestionCode();
     try {
       createQuestionForm1(
           level: questionModel.value.level,
@@ -203,8 +198,10 @@ class QuestionController extends GetxController {
       final reader = FileReader();
       reader.readAsDataUrl(file);
       reader.onLoadEnd.listen((event) async {
-        var snapshot =
-            await fs.ref(questionsCollection).child('newfile').putBlob(file);
+        var snapshot = await fs
+            .ref(questionCtr.renderQuestionCode())
+            .child('newfile')
+            .putBlob(file);
         String downloadUrl = await snapshot.ref.getDownloadURL();
         imgUrl = downloadUrl;
       });

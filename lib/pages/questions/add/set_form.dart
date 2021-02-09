@@ -1,16 +1,9 @@
-import 'package:jamas_web/pages/questions/controller/question_controller.dart';
-import 'package:jamas_web/pages/questions/widgets_questions/add_form1.dart';
-import 'package:jamas_web/pages/questions/widgets_questions/add_form2.dart';
+import 'package:jamas_web/pages/questions/add/form1/add_form1.dart';
+import 'package:jamas_web/pages/questions/add/form2/add_form2.dart';
+import 'package:jamas_web/pages/questions/add/form3/form3.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-//class FormAddQuestion extends StatefulWidget {
-//  @override
-//  _FormAddQuestionState createState() => _FormAddQuestionState();
-//}
 
 class FormAddQuestion extends StatelessWidget {
-//  final QuestionController questionCtr = Get.find();
   final String formCode;
 
   FormAddQuestion(this.formCode);
@@ -29,10 +22,16 @@ class FormAddQuestion extends StatelessWidget {
           return AddForm2();
         }
         break;
+      case '3':
+        {
+          return AddForm3();
+        }
+        break;
 
       default:
         {
           //statements;
+
         }
         break;
     }

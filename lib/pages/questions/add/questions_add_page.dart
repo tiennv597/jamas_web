@@ -1,15 +1,13 @@
+import 'package:jamas_web/pages/questions/add/set_form.dart';
+import 'package:jamas_web/pages/questions/controller/question_controller.dart';
 import 'package:jamas_web/pages/questions/models/level.dart';
-import 'package:jamas_web/pages/questions/widgets_questions/set_form.dart';
+import 'package:jamas_web/pages/questions/models/sub_type.dart';
+import 'package:jamas_web/pages/questions/models/type.dart';
 import 'package:jamas_web/provider/tables.dart';
 import 'package:jamas_web/widgets/page_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'constants/constants.dart';
-import 'controller/question_controller.dart';
-import 'dialog/dialog_confirm_question.dart';
-import 'models/sub_type.dart';
-import 'models/type.dart';
 
 // Trang hiển thị thêm câu hỏi và xác nhận thêm câu hỏi
 class QuestionAddPage extends StatefulWidget {
@@ -123,51 +121,60 @@ class _QuestionAddPageState extends State<QuestionAddPage> {
                 ),
               ],
             ),
-            Obx(() =>
-                FormAddQuestion(questionCtr.questionModel.value.formCode)),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
+            Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) =>
-                                    DialogConfirmQuestion());
-                          },
-                          color: Colors.green,
-                          child: Text(
-                            "Lưu câu hỏi",
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          onPressed: () {
-                            questionCtr.clearALl();
-                          },
-                          color: Colors.red,
-                          child: Text("Xóa tất cả",
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white)),
-                        ),
-                      ),
-                      Obx(() =>
-                          Text('${Get.find<QuestionController>().message}'))
-                    ],
-                  ),
-                )
+                Text(
+                  questionCtr.problem,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ],
             ),
+            // tạo ra form add câu hỏi ứng với mỗi loại
+            Obx(() =>
+                FormAddQuestion(questionCtr.questionModel.value.formCode)),
+            // Column(
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   mainAxisSize: MainAxisSize.max,
+            //   children: [
+            //     Padding(
+            //       padding: const EdgeInsets.all(8.0),
+            //       child: Row(
+            //         children: [
+            //           Padding(
+            //             padding: const EdgeInsets.all(8.0),
+            //             child: RaisedButton(
+            //               onPressed: () {
+            //                 showDialog(
+            //                     context: context,
+            //                     builder: (BuildContext context) =>
+            //                         DialogConfirmQuestion());
+            //               },
+            //               color: Colors.green,
+            //               child: Text(
+            //                 "Lưu câu hỏi",
+            //                 style: TextStyle(fontSize: 20, color: Colors.white),
+            //               ),
+            //             ),
+            //           ),
+            //           Padding(
+            //             padding: const EdgeInsets.all(8.0),
+            //             child: RaisedButton(
+            //               onPressed: () {
+            //                 questionCtr.clearALl();
+            //               },
+            //               color: Colors.red,
+            //               child: Text("Xóa tất cả",
+            //                   style:
+            //                       TextStyle(fontSize: 20, color: Colors.white)),
+            //             ),
+            //           ),
+            //           Obx(() =>
+            //               Text('${Get.find<QuestionController>().message}'))
+            //         ],
+            //       ),
+            //     )
+            //   ],
+            // ),
           ]),
     ));
   }

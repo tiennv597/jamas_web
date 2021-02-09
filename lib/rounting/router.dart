@@ -1,19 +1,17 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:jamas_web/main.dart';
 import 'package:jamas_web/pages/brands/brands_page.dart';
 import 'package:jamas_web/pages/categories/categories_page.dart';
 import 'package:jamas_web/pages/login/login.dart';
-import 'package:jamas_web/pages/questions/questions_add_page.dart';
+import 'package:jamas_web/pages/questions/add/questions_add_page.dart';
+
 import 'package:jamas_web/pages/questions/questions_page.dart';
 import 'package:jamas_web/pages/registration/registration.dart';
+import 'package:jamas_web/pages/users/users_page.dart';
+import 'package:jamas_web/rounting/route_names.dart';
 import 'package:jamas_web/widgets/layout/layout.dart';
 import '../pages/home/home_page.dart';
-import '../pages/orders/orders_page.dart';
-import '../pages/products/products_page.dart';
-import '../pages/users/users_page.dart';
-import 'package:jamas_web/rounting/route_names.dart';
-import 'package:flutter/material.dart';
-
-import 'route_names.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   print('generateRoute: ${settings.name}');
@@ -22,8 +20,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(HomePage());
     case UsersRoute:
       return _getPageRoute(UsersPage());
-    case ProductsRoute:
-      return _getPageRoute(ProductsPage());
     case LoginRoute:
       return _getPageRoute(LoginPage());
     case RegistrationRoute:

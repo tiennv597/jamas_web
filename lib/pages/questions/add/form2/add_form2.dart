@@ -2,7 +2,7 @@ import 'dart:async';
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:image_picker/image_picker.dart';
+
 import 'package:jamas_web/pages/questions/controller/question_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,8 +16,7 @@ class AddForm2 extends StatefulWidget {
 class _AddForm2State extends State<AddForm2> {
   final QuestionController questionCtr = Get.find();
   String _uploadedFileURL;
-  final _picker = ImagePicker();
-  PickedFile image;
+
   String imgUrl;
 
   @override
@@ -114,7 +113,6 @@ class _AddForm2State extends State<AddForm2> {
               new Row(
                 children: <Widget>[
                   Padding(
-
                     padding: const EdgeInsets.only(top: 14, right: 8),
                     child: Radio(
                         value: 3,
