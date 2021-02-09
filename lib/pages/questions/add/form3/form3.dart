@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jamas_web/pages/questions/dialog/dialog_confirm_question.dart';
@@ -26,7 +27,7 @@ class _AddForm3State extends State<AddForm3> {
             children: [
               TextFormField(
                 onChanged: (text) {
-                  form3Ctr.questionModel.value.content = text;
+                  form3Ctr.form3Model.value.content = text;
                 },
                 cursorColor: Colors.deepPurpleAccent,
                 minLines: 3,
@@ -58,22 +59,40 @@ class _AddForm3State extends State<AddForm3> {
                         SizedBox(
                           height: 20.0,
                         ),
-                        form3Ctr.imgUrl == null
-                            ? Placeholder(
-                                fallbackHeight: 200,
-                                fallbackWidth: 300,
-                              )
-                            : Container(
-                                height: 200,
-                                width: 300,
-                                child: Image.network(
-                                  form3Ctr.imgUrl,
-                                  fit: BoxFit.contain,
-                                )),
+                        Obx(
+                          () => form3Ctr.form3Model.value.answer1 == ''
+                              ? Placeholder(
+                                  fallbackHeight: 200,
+                                  fallbackWidth: 300,
+                                )
+                              : CachedNetworkImage(
+                                  width: 300,
+                                  height: 200,
+                                  imageUrl: form3Ctr.form3Model.value.answer1,
+                                  placeholder: (context, url) => Center(
+                                      child: new CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      new Icon(Icons.error),
+                                ),
+                        ),
+                        // form3Ctr.form3Model.value.answer1 == ''
+                        //     ? Placeholder(
+                        //         fallbackHeight: 200,
+                        //         fallbackWidth: 300,
+                        //       )
+                        //     : Container(
+                        //         height: 200,
+                        //         width: 300,
+                        //         child: Obx(
+                        //           () => Image.network(
+                        //             form3Ctr.form3Model.value.answer1,
+                        //             fit: BoxFit.contain,
+                        //           ),
+                        //         )),
                         IconButton(
                           icon: Icon(Icons.upload_file),
                           color: Colors.lightBlue,
-                          onPressed: () => form3Ctr.uploadToStorage(),
+                          onPressed: () => form3Ctr.uploadToStorage(1),
                         ),
                       ],
                     ),
@@ -98,7 +117,7 @@ class _AddForm3State extends State<AddForm3> {
                           SizedBox(
                             height: 20.0,
                           ),
-                          form3Ctr.imgUrl == null
+                          form3Ctr.form3Model.value.answer2 == ''
                               ? Placeholder(
                                   fallbackHeight: 200,
                                   fallbackWidth: 300,
@@ -107,13 +126,13 @@ class _AddForm3State extends State<AddForm3> {
                                   height: 200,
                                   width: 300,
                                   child: Image.network(
-                                    form3Ctr.imgUrl,
+                                    form3Ctr.form3Model.value.answer2,
                                     fit: BoxFit.contain,
                                   )),
                           IconButton(
                             icon: Icon(Icons.upload_file),
                             color: Colors.lightBlue,
-                            onPressed: () => form3Ctr.uploadToStorage(),
+                            onPressed: () => form3Ctr.uploadToStorage(2),
                           ),
                         ],
                       ),
@@ -146,22 +165,22 @@ class _AddForm3State extends State<AddForm3> {
                         SizedBox(
                           height: 20.0,
                         ),
-                        form3Ctr.imgUrl == null
+                        form3Ctr.form3Model.value.answer3 == ''
                             ? Placeholder(
-                          fallbackHeight: 200,
-                          fallbackWidth: 300,
-                        )
+                                fallbackHeight: 200,
+                                fallbackWidth: 300,
+                              )
                             : Container(
-                            height: 200,
-                            width: 300,
-                            child: Image.network(
-                              form3Ctr.imgUrl,
-                              fit: BoxFit.contain,
-                            )),
+                                height: 200,
+                                width: 300,
+                                child: Image.network(
+                                  form3Ctr.form3Model.value.answer4,
+                                  fit: BoxFit.contain,
+                                )),
                         IconButton(
                           icon: Icon(Icons.upload_file),
                           color: Colors.lightBlue,
-                          onPressed: () => form3Ctr.uploadToStorage(),
+                          onPressed: () => form3Ctr.uploadToStorage(3),
                         ),
                       ],
                     ),
@@ -178,30 +197,25 @@ class _AddForm3State extends State<AddForm3> {
                                   form3Ctr.answer = value;
                                 });
                               }),
-                          // (imageUrl != null)
-                          //     ? Image.network(imageUrl)
-                          //     : Placeholder(
-                          //         fallbackHeight: 200.0,
-                          //         fallbackWidth: double.infinity),
                           SizedBox(
                             height: 20.0,
                           ),
-                          form3Ctr.imgUrl == null
+                          form3Ctr.form3Model.value.answer4 == ''
                               ? Placeholder(
-                            fallbackHeight: 200,
-                            fallbackWidth: 300,
-                          )
+                                  fallbackHeight: 200,
+                                  fallbackWidth: 300,
+                                )
                               : Container(
-                              height: 200,
-                              width: 300,
-                              child: Image.network(
-                                form3Ctr.imgUrl,
-                                fit: BoxFit.contain,
-                              )),
+                                  height: 200,
+                                  width: 300,
+                                  child: Image.network(
+                                    form3Ctr.form3Model.value.answer4,
+                                    fit: BoxFit.contain,
+                                  )),
                           IconButton(
                             icon: Icon(Icons.upload_file),
                             color: Colors.lightBlue,
-                            onPressed: () => form3Ctr.uploadToStorage(),
+                            onPressed: () => form3Ctr.uploadToStorage(4),
                           ),
                         ],
                       ),
@@ -219,7 +233,7 @@ class _AddForm3State extends State<AddForm3> {
             children: [
               TextFormField(
                 onChanged: (text) {
-                  form3Ctr.explain = text;
+                  form3Ctr.form3Model.value.explain = text;
                 },
                 cursorColor: Colors.deepPurpleAccent,
                 minLines: 2,
@@ -258,7 +272,7 @@ class _AddForm3State extends State<AddForm3> {
                       padding: const EdgeInsets.all(8.0),
                       child: RaisedButton(
                         onPressed: () {
-                          form3Ctr.clearALl();
+                          // form3Ctr.clearALl();
                         },
                         color: Colors.red,
                         child: Text("Xóa tất cả",
